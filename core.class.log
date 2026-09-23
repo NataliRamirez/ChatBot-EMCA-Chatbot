@@ -1,0 +1,175 @@
+[handleMsg]:  {
+  type: 'text',
+  from: '573227184249',
+  to: '15556317360',
+  body: 'Hola',
+  name: 'Jd',
+  pushName: 'Jd',
+  message_id: 'wamid.HBgMNTczMjI3MTg0MjQ5FQIAEhgUM0ExQkM1QzI5QkY4RTQ0RjQ4NDcA',
+  timestamp: '1790111822',
+  fromMe: false,
+  userId: 'CO.1274304771024837',
+  host: '+1 555-631-7360'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_c94e7c81-daae-488b-90b5-5c4b3c2192ad',
+  keyword: 'key_3874a524-9430-483f-b441-deb89de4b8c9',
+  answer: '__call_action__',
+  options: {
+    media: undefined,
+    buttons: [],
+    capture: false,
+    delay: 0,
+    idle: undefined,
+    ref: undefined,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e3d327900599dca75efe2daff94e2c2f'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_07f97242-29e7-4c72-92fe-7b8831f4a813',
+  keyword: 'ans_c94e7c81-daae-488b-90b5-5c4b3c2192ad',
+  answer: '👋 ¡Hola! Bienvenido al sistema de atención virtual de *EMCA*.\n' +
+    '\n' +
+    'Para brindarte una atención personalizada, necesitamos realizar un registro rápido por única vez.\n' +
+    '\n' +
+    'Por favor, escribe tu *Nombre completo*:',
+  options: {
+    media: undefined,
+    buttons: [],
+    capture: false,
+    delay: 0,
+    idle: undefined,
+    ref: undefined,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'bdd35ced0b5422749781ba9f1e786a3b'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_967fa7cf-61e5-49ac-bad1-3708e57ce82e',
+  keyword: 'ans_07f97242-29e7-4c72-92fe-7b8831f4a813',
+  answer: '__capture_only_intended__',
+  options: {
+    media: undefined,
+    buttons: [],
+    capture: true,
+    delay: 0,
+    idle: undefined,
+    ref: undefined,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'a325c3f4c37f8e3ca15c450944c0f8b9'
+}
+[handleMsg]:  {
+  type: 'text',
+  from: '573227184249',
+  to: '15556317360',
+  body: 'Carlos',
+  name: 'Jd',
+  pushName: 'Jd',
+  message_id: 'wamid.HBgMNTczMjI3MTg0MjQ5FQIAEhgUM0EyNUJBMzA3Q0U4QUUzRTE3NTQA',
+  timestamp: '1790111830',
+  fromMe: false,
+  userId: 'CO.1274304771024837',
+  host: '+1 555-631-7360'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_8aa7498f-f20a-48ec-931c-45dbf8f19671',
+  keyword: 'ans_967fa7cf-61e5-49ac-bad1-3708e57ce82e',
+  answer: '🆔 ¡Gracias! Ahora, ingresa tu número de *Cédula o Documento de Identidad* (sin puntos ni espacios):',
+  options: {
+    media: undefined,
+    buttons: [],
+    capture: false,
+    delay: 0,
+    idle: undefined,
+    ref: undefined,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'a18c447a46031ab31e634b5bc8a400d6'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_95a47923-b6a8-4198-b0b0-9b416ffe0a9e',
+  keyword: 'ans_8aa7498f-f20a-48ec-931c-45dbf8f19671',
+  answer: '__capture_only_intended__',
+  options: {
+    media: undefined,
+    buttons: [],
+    capture: true,
+    delay: 0,
+    idle: undefined,
+    ref: undefined,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '6dde0b6bebc23ba0f6f61f1c2c6722dd'
+}
+[handleMsg]:  {
+  type: 'text',
+  from: '573227184249',
+  to: '15556317360',
+  body: '64663',
+  name: 'Jd',
+  pushName: 'Jd',
+  message_id: 'wamid.HBgMNTczMjI3MTg0MjQ5FQIAEhgUM0E0ODk5OEQ2QkU2Rjg2NkQ1MEEA',
+  timestamp: '1790111834',
+  fromMe: false,
+  userId: 'CO.1274304771024837',
+  host: '+1 555-631-7360'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_79367dd7-e0fb-436c-b665-0041817af7c9',
+  keyword: 'ans_95a47923-b6a8-4198-b0b0-9b416ffe0a9e',
+  answer: '📧 Excelente. Por último, ingresa tu *Correo Electrónico*:',
+  options: {
+    media: undefined,
+    buttons: [],
+    capture: false,
+    delay: 0,
+    idle: undefined,
+    ref: undefined,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '8e2fa2a64a4b67157bc1febc5130bca1'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_a1b9e8e5-59bb-4ccd-8a28-4b62d10fa123',
+  keyword: 'ans_79367dd7-e0fb-436c-b665-0041817af7c9',
+  answer: '__capture_only_intended__',
+  options: {
+    media: undefined,
+    buttons: [],
+    capture: true,
+    delay: 0,
+    idle: undefined,
+    ref: undefined,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '6d233fc2db1de861f560abb220170bba'
+}
+[handleMsg]:  {
+  type: 'text',
+  from: '573227184249',
+  to: '15556317360',
+  body: 'Cards(.com',
+  name: 'Jd',
+  pushName: 'Jd',
+  message_id: 'wamid.HBgMNTczMjI3MTg0MjQ5FQIAEhgUM0FFNUE0QkY5QjdFRTk2QTVFMTkA',
+  timestamp: '1790111842',
+  fromMe: false,
+  userId: 'CO.1274304771024837',
+  host: '+1 555-631-7360'
+}

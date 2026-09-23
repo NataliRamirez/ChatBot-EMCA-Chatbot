@@ -1,0 +1,15 @@
+#MODULOS
+dist/
+node_modules/
+
+
+#PAQUETES
+package-lock.json
+package.json
+
+
+#CONFIGURACIONES
+tsconfig.json
+
+#CONECIONES 
+.env
