@@ -1,6 +1,15 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+/**
+ * @file conexionApi.ts
+ * @author Juan David Nieto
+ * @description Módulo de integración encargado de la comunicación entre
+ * BuilderBot y el backend Express. Proporciona funciones para registrar
+ * usuarios, almacenar mensajes, gestionar archivos multimedia y normalizar
+ * información antes de ser enviada a la API.
+ */
+
 const API_BASE_URL = process.env.API_BASE_URL || 'http://127.0.0.1:4000/v1';
 const API_KEY = process.env.API_KEY || 'EmcaSecret2026';
 

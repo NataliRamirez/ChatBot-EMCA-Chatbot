@@ -3,6 +3,14 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
 import { masOpcionesFlow } from '../MenusPrincipales/masOpcionesFlow.js'
 import { usuariosPausados } from '../../app.js'
 
+/**
+ * @file tramitesFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo informativo encargado de orientar a los usuarios sobre
+ * los trámites, solicitudes, peticiones, quejas, reclamos y derechos de
+ * petición disponibles a través del portal oficial de EMCA. Permite además
+ * regresar al menú de opciones comerciales una vez finalizada la consulta.
+ */
 
 const mensajeTramites = `📝 *TRÁMITES, SOLICITUDES, PQR Y DERECHOS DE PETICIÓN*
 Para más información y poder gestionar su solicitud, le invitamos a ingresar a nuestra página:

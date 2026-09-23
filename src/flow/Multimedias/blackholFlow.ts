@@ -1,6 +1,15 @@
 import { addKeyword, EVENTS } from '@builderbot/bot';
 import { usuariosPausados } from '../../app.js';
 
+/**
+ * @file reportesFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de la gestión inicial de reportes de servicios
+ * públicos dentro del chatbot EMCA. Permite al usuario seleccionar el área
+ * correspondiente para registrar novedades relacionadas con alumbrado público,
+ * acueducto, alcantarillado y aseo.
+ */
+
 export const blackholeFlow = addKeyword([
   EVENTS.WELCOME,
   EVENTS.MEDIA,

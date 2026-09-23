@@ -6,6 +6,14 @@ import { usuariosPausados } from '../../app.js';
 const mensajeFugaAgua = '💧 *REPORTAR FUGA DE AGUA*\n\nHemos recibido su reporte por eso lo invitamos a realizar su reporte en los siguientes numeros 3024091920 o el 3024091899\n\nPresiona el botón para regresar al menú principal:';
 const botones = ['Menú principal']
 
+/**
+ * @file fugaAguaFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo conversacional encargado de atender los reportes
+ * relacionados con fugas de agua. El sistema informa al usuario los canales
+ * oficiales habilitados para reportar este tipo de incidencias y permite
+ * regresar al menú principal del chatbot.
+ */
 
 export const fugaAguaFlow = addKeyword(['fuga_agua_action_event', 'fuga de agua', 'reportar fuga'])
   

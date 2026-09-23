@@ -5,6 +5,15 @@ import { dobleFacturacionFlow } from '../Tramites/dobleFacturacion.js';
 import { masOpciones2Flow } from './masOpciones2Flow.js';
 import { usuariosPausados } from '../../app.js';
 
+/**
+ * @file masOpcionesFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de mostrar la primera página del menú de
+ * opciones avanzadas del chatbot EMCA, permitiendo al usuario acceder
+ * a consultas relacionadas con trámites, facturación y navegación hacia
+ * módulos complementarios del sistema.
+ */
+
 const mensajeMasOpciones = '📑 *GESTIÓN DE FACTURACIÓN Y TRÁMITES*\n──────────────────────────────────\n🔹 *Página 1 de 3*\n\nConsulta el estado de tu cuenta, solicita el duplicado de tu factura o realiza peticiones comerciales.\n\n📌 *Toca un botón del menú para avanzar:*';
 const botones = ['Trámites', 'Doble facturación', 'Siguiente'];
 

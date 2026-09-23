@@ -3,6 +3,15 @@ import { guardarMensaje, obtenerTextoLimpio } from './conexionApi.js'
 import { masOpcionesFlow } from './MenusPrincipales/masOpcionesFlow.js'
 import { usuariosPausados } from '../app.js'
 
+/**
+ * @file medidoresFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo informativo encargado de orientar a los usuarios sobre
+ * los trámites y solicitudes relacionados con medidores de servicios públicos.
+ * Permite consultar información sobre revisiones, cambios, daños, verificaciones
+ * de lectura y canales oficiales de atención de EMCA.
+ */
+
 const mensajeMedidor = `📟 *MEDIDORES*\n\nPara realizar trámites relacionados con:\n• Revisión de medidor\n• Cambio de medidor\n• Medidor dañado\n• Medidor detenido\n• Verificación de lectura\n\nDebe acercarse a nuestra oficina principal.\n\n📍 *Dirección:* Carrera 24 #39-54, Calarcá - Quindío\n🕒 *Horario de atención:* Lunes a viernes de 7:30 a.m. a 12:00 m y de 2:00 p.m. a 5:00 p.m. o comunicarse a los siguientes numeros 3024091910 o el 3024091899 y hacer el reporte del medidor ya sea que adquiera el servicio con EMCA ESP o propio del usuario `
 const botones = ['Menú principal']
 

@@ -5,6 +5,14 @@ import { certificadosFlow } from '../Tramites/certificadosFlow.js'
 import { asesorFlow } from '../Asesor/asesorFlow.js' // 👈 Importamos asesorFlow
 import { usuariosPausados } from '../../app.js'
 
+/**
+ * @file masOpciones3Flow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de mostrar la tercera página del menú de
+ * opciones del chatbot EMCA, permitiendo al usuario gestionar consultas
+ * relacionadas con certificados, predios y atención personalizada mediante asesor.
+ */
+
 const mensajeMasOpciones3 = '📜 *CERTIFICACIONES Y PREDIO*\n──────────────────────────────────\n🔹 *Página 3 de 3*\n📌 *Gestión documental en línea:*\n• Expedición de certificados de paz y salvo / servicio.\n• Actualización o consulta de datos del predio.\n\n👇 *Toca un botón para elegir:*'
 
 // 👈 Cambiamos "Menú principal" por "Asesor"

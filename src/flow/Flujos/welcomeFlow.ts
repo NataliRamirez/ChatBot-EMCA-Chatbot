@@ -3,6 +3,15 @@ import { guardarMensaje, registrarUsuarioBot } from '../conexionApi.js';
 import { conversacionalOrquestadorFlow } from '../conversacionalOrquestador/conversacionalOrquestadorFlow.js';
 import { usuariosPausados } from '../../app.js';
 
+/**
+ * @file welcomeFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo de bienvenida y registro inicial del chatbot de EMCA.
+ * Se encarga de validar si el usuario ya existe en la base de datos,
+ * solicitar la información necesaria para el registro de nuevos usuarios
+ * y redirigir al flujo conversacional principal una vez finalizado el proceso.
+ */
+
 const mensajeBienvenidaNuevo = `👋 ¡Hola! Bienvenido al sistema de atención virtual de *EMCA*.\n\nPara brindarte una atención personalizada, necesitamos realizar un registro rápido por única vez.\n\nPor favor, escribe tu *Nombre completo*:`;
 const mensajePideCedula = `🆔 ¡Gracias! Ahora, ingresa tu número de *Cédula o Documento de Identidad* (sin puntos ni espacios):`;
 const mensajePideEmail = `📧 Excelente. Por último, ingresa tu *Correo Electrónico*:`;

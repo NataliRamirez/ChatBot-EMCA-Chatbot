@@ -3,6 +3,14 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
 import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
 import { usuariosPausados } from '../../app.js'
 
+/**
+ * @file horariosFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de proporcionar información sobre los horarios
+ * de atención de EMCA, incluyendo dirección y líneas de contacto,
+ * permitiendo al usuario regresar al menú principal.
+ */
+
 const mensajeHorarios = `📍 *HORARIOS DE ATENCIÓN*\n\nEsperamos que se encuentre muy bien el día de hoy.\n\n🕒 Lunes a Viernes: 7:30 a.m. - 5:30 p.m.\n📍 Dirección: Carrera 24 #39-54\n📞 Teléfono: +57 302 409 1910` /**Por definir  */
 const botones = ['Menú principal']
 

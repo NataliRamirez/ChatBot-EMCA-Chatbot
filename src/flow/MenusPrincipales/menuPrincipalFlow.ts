@@ -5,6 +5,14 @@ import { reportesFlow } from './reportesFlow.js';
 import { masOpcionesFlow } from './masOpcionesFlow.js';
 import { usuariosPausados } from '../../app.js';
 
+/**
+ * @file menuPrincipalFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo principal de navegación del chatbot EMCA.
+ * Presenta las categorías principales de atención y dirige al usuario
+ * hacia los módulos correspondientes según la opción seleccionada.
+ */
+
 const TEXTO_MENU = '📋 *MENÚ PRINCIPAL DE ATENCIÓN*\n───────────────────────────────\n¡Hola! Bienvenido a nuestro canal de atención interactivo. 📌 *¿En qué te podemos ayudar hoy?* Selecciona la categoría correspondiente en los botones de abajo para guiarte en tu solicitud:';
 const BOTONES_MENU = ['Horarios', 'Reportes', 'Más opciones'];
 

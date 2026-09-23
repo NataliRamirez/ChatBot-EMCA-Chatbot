@@ -5,6 +5,15 @@ import { AcueductoAlcantarilladoFlow } from '../Reportes/AcueductoAlcantarillado
 import { aseoFlow } from '../Reportes/Aseoflow.js';
 import { usuariosPausados } from '../../app.js';
 
+/**
+ * @file reportesFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de la gestión inicial de reportes de servicios
+ * públicos dentro del chatbot EMCA. Permite al usuario seleccionar el área
+ * correspondiente para registrar novedades relacionadas con alumbrado público,
+ * acueducto, alcantarillado y aseo.
+ */
+
 const mensajeReportes = '⚠️ *REPORTES DE SERVICIOS*───────────────────────────────Bienvenido al canal de novedades técnicas. Registra tu reporte de forma rápida y sin esperas. 👇 *Toca un botón según tu servicio:*';
 const botonesReportes = ['Alumbrado', 'Acueducto', 'Aseo'];
 

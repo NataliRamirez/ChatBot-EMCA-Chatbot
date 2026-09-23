@@ -2,6 +2,14 @@ import { addKeyword } from '@builderbot/bot'
 import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
 import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
 
+/**
+ * @file lineasFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de proporcionar al usuario las líneas
+ * oficiales de atención de EMCA, incluyendo canales de contacto,
+ * horarios de atención y retorno al menú principal.
+ */
+
 const mensajeLineas = `📞 *LÍNEAS DE ATENCIÓN*\n\nEsperamos que tenga un excelente día. Por favor indíquenos cuál es su caso y sea muy específico en el reporte del daño.\n\n📱 Atención WhatsApp: +57 302 409 1910\n☎️ Línea fija: (606) 735 0000\n🕒 Horario de atención: Lunes a Viernes de 7:30 a.m. a 5:30 p.m.`
 const botones = ['Menú principal']
 

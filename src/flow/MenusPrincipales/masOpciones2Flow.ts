@@ -5,6 +5,15 @@ import { masOpciones3Flow } from '../MenusPrincipales/masOpciones3Flow.js';
 import { usuariosPausados } from '../../app.js';
 import { HorariosBasuraFlow } from '../AseoGeneral/HorariosBasuraFlow.js';
 
+/**
+ * @file masOpciones2Flow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de mostrar la segunda página del menú de
+ * opciones del chatbot EMCA, permitiendo consultar información relacionada
+ * con horarios de recolección de residuos, medidores y acceso a opciones
+ * adicionales del sistema.
+ */
+
 // Mensajes y botones locales
 const mensajeMasOpciones2 = '⏱️ *RECOLECCIÓN Y MEDIDORES*\n──────────────────────────────────\n🔹 *Página 2 de 3*\n\n📌 *¿Qué servicio necesitas verificar?*\n• Consulta de días y horarios de recolección de basura.\n• Novedades, lecturas y reportes sobre medidores.\n\n👇 *Toca un botón para elegir:*';
 const botonesMasOpciones2 = ['Horarios Basura', 'Medidores', 'Siguiente'];

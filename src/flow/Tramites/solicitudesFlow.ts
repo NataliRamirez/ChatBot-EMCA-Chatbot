@@ -3,6 +3,15 @@ import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 import { usuariosPausados } from "../../app.js";
 
+/**
+ * @file SolicitudesFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo informativo encargado de brindar al usuario el enlace
+ * oficial para la gestión de solicitudes, peticiones, quejas, reclamos
+ * y derechos de petición de EMCA. Permite redirigir al menú principal
+ * una vez finalizada la consulta.
+ */
+
 const botones = ['Menú principal']
 const mensajeSolicitudes = `Para mas información y poder gestionar su solicitud le invitamos a ingresar en nuestra página (Tramites , solicitudes, pqr , derechos de petición):
 https://www.emca-calarca-quindio.gov.co/peticiones-quejas-reclamos

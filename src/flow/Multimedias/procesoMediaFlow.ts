@@ -1,5 +1,13 @@
 export const procesarMedia = async (ctx: any, mediaUrl) => {
 
+/**
+ * @function procesarMedia
+ * @author Juan David Nieto
+ * @description Función encargada de identificar el tipo de archivo multimedia
+ * recibido desde WhatsApp y normalizar su estructura para ser almacenada
+ * posteriormente en la base de datos y visualizada desde el panel administrativo.
+ */
+
   const msg = ctx.media
 
   if (msg?.imageMessage){ 

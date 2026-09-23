@@ -3,6 +3,15 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
 import { masOpcionesFlow } from '../MenusPrincipales/masOpcionesFlow.js'
 import { usuariosPausados } from '../../app.js'
 
+/**
+ * @file dobleFacturacionFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de brindar información relacionada con
+ * casos de doble facturación reportados por los usuarios. Permite orientar
+ * al ciudadano sobre los requisitos necesarios para realizar la reclamación
+ * y los canales habilitados para la atención de este tipo de solicitudes.
+ */
+
 const mensajeDobleFact = `📄 *DOBLE FACTURACIÓN*\n\nSi te llegó un cobro duplicado en tu factura, por favor ten a la mano el número de cuenta contrato y acércate a nuestras oficinas ubicadas en 🕒 Lunes a Viernes: 7:30 a.m. - 5:30 p.m.\n📍 Dirección: Carrera 24 #39-54 o envía una solicitud formal con el número de predio a los siguientes numeros de telefono  3024091910 o el 3024091899.`
 const botonesRetorno = ['Más opciones']
 

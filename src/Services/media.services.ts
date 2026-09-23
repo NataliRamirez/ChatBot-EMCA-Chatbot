@@ -1,6 +1,16 @@
 import fs from 'fs'
 import path from 'path'
 
+/**
+ * @file media.services.ts
+ * @author Juan David Nieto
+ * @description Utilidad encargada de la preparación y clasificación de archivos
+ * multimedia enviados por los usuarios a través de WhatsApp. Este módulo crea
+ * automáticamente la estructura de carpetas temporales necesarias para almacenar
+ * imágenes, videos, audios y documentos, además de identificar el tipo de
+ * contenido recibido para su posterior procesamiento.
+ */
+
 const TEMP_DIR = path.join(process.cwd(), 'src', 'temp')
 
 const ensureDir = (dir: string) => {

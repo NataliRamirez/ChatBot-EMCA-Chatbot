@@ -1,6 +1,15 @@
 import { addKeyword, EVENTS } from '@builderbot/bot'
 import { procesarMedia } from '../../Services/reportes.services.js'
 
+/**
+ * @file AlumbradoFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de gestionar las solicitudes relacionadas
+ * con el servicio de alumbrado público. Permite al usuario seleccionar
+ * el tipo de novedad que desea reportar y redirecciona al flujo
+ * correspondiente para su atención.
+ */
+
 const API_BASE_URL = process.env.API_BASE_URL || 'http://127.0.0.1:4000/v1'
 const API_KEY = process.env.API_KEY || 'EmcaSecret2026'
 

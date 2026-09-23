@@ -2,6 +2,14 @@ import { addKeyword, EVENTS } from '@builderbot/bot';
 import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js';
 import { usuariosPausados } from '../../app.js';
 
+/**
+ * @file conversacionalOrquestadorFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo principal encargado de la atención conversacional del
+ * chatbot EMCA, permitiendo identificar la intención del usuario y dirigirlo
+ * automáticamente al módulo o servicio correspondiente según su consulta.
+ */
+
 // Flujos de submenús importados para delegación
 import { alumbradoFlow } from '../Alumbrado/AlumbradoFlow.js';
 import { comercialFlow } from '../Alumbrado/comercialFlow.js';

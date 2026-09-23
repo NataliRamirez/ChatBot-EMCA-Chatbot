@@ -2,6 +2,15 @@ import { addKeyword } from "@builderbot/bot";
 import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 
+/**
+ * @file MatriculaFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de brindar información sobre los requisitos
+ * necesarios para realizar solicitudes de matrícula de servicios públicos,
+ * incluyendo documentación requerida para diferentes modalidades y datos
+ * de atención presencial.
+ */
+
 // Parte 1: Documentación requerida (Menos de 1024 caracteres)
 const mensajeMatriculaParte1 = `📋 *NUEVA MATRÍCULA*
 

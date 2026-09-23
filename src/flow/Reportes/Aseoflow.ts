@@ -5,6 +5,15 @@ import { SolicitudPodaFlow } from '../AseoGeneral/SolicitudPodaFlow.js';
 import { recolecionEspecialesFlow } from '../AseoGeneral/recolecionEspecialesFlow.js';
 import { usuariosPausados } from '../../app.js';
 
+/**
+ * @file aseoFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de gestionar las solicitudes y reportes
+ * relacionados con el servicio de aseo. Permite al usuario seleccionar
+ * el tipo de novedad o requerimiento y redirecciona automáticamente
+ * al flujo correspondiente para su atención.
+ */
+
 const mensajeAseo = '🗑 *GESTIÓN Y REPORTES DE ASEO*\n\nSelecciona una de las siguientes opciones:';
 // Botones acortados a <= 20 caracteres
 const botones = ['Basura en Calle', 'Solicitud Poda', 'Recolección Esp.'];

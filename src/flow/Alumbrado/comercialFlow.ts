@@ -7,6 +7,14 @@ import { usuariosPausados } from "../../app.js";
 const mensajeComercial = '🏢 *ÁREA COMERCIAL*\n\nSelecciona la opción que requieres:';
 const botonesComercial = ['Matrícula', 'Menú principal'];
 
+/**
+ * @file comercialFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo conversacional encargado de gestionar las solicitudes
+ * relacionadas con el área comercial de EMCA. Permite al usuario acceder
+ * a los servicios de matrícula o regresar al menú principal del chatbot.
+ */
+
 export const comercialFlow = addKeyword(['comercial', 'Comercial', 'Area comercial'])
   .addAction(async (ctx: any) => {
     await guardarMensaje(
