@@ -3,6 +3,22 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
 import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
 import { usuariosPausados } from '../../app.js'
 
+
+const mensajeCertificado = `SOLICITUD DE CERTIFICADOS
+
+Puedes tramitar las siguientes certificaciones:
+• Paz y Salvo
+• Estratificación
+• Prestación de Servicios Públicos
+• Otros certificados administrativos
+
+Te invitamos a realizar tu trámite de forma presencial o comunicándote a nuestras líneas de atención:
+
+📍 Dirección: Carrera 24 #39-54, Calarcá - Quindío
+⏰ Horario de atención: Lunes a viernes de 7:30 a.m. a 12:00 m. y de 2:00 p.m. a 5:00 p.m.
+
+Haz clic en el botón de abajo para regresar:`
+
 /**
  * @file certificadosFlow.ts
  * @author Juan David Nieto
@@ -12,7 +28,7 @@ import { usuariosPausados } from '../../app.js'
  * posteriormente al menú principal del chatbot.
  */
 
-const mensajeCertificado = `📄 *CERTIFICADOS*\n\nPara solicitar certificados de:\n• Paz y salvo\n• Estratificación\n• Servicios públicos\n• Otros certificados relacionados\n\nLe invitamos a acercarse a nuestra oficina principal o comunicarse con nuestras líneas de atención.\n\n📍 *Dirección:* Carrera 24 #39-54, Calarcá - Quindío\n⏰ *Horario de atención:* Lunes a viernes de 7:30 a.m. a 12:00 m y de 2:00 p.m. a 5:00 p.m.`
+
 const botones = ['Menú principal']
 
 export const certificadosFlow = addKeyword(['📄 Certificados', 'certificados'])

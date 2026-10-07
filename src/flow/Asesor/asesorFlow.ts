@@ -2,6 +2,7 @@ import { addKeyword } from '@builderbot/bot';
 import { usuariosPausados } from '../../app.js';
 import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js';
 
+
 /**
  * @file asesorFlow.ts
  * @author Juan David Nieto
@@ -9,6 +10,7 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js';
  * un asesor humano, pausando temporalmente la interacción automática del
  * chatbot y notificando al usuario sobre la asignación de atención personalizada.
  */
+
 
 export const asesorFlow = addKeyword(['Asesor', 'asesor'])
   .addAction(async (ctx: any, { endFlow }) => {

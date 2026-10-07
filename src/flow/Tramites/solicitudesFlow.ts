@@ -3,6 +3,18 @@ import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 import { usuariosPausados } from "../../app.js";
 
+
+const botones = ['Menú principal']
+const mensajeSolicitudes = `MÁS INFORMACIÓN Y GESTIÓN DE SOLICITUDES
+
+Para consultar más información o realizar un trámite formal, te invitamos a ingresar a nuestro portal web oficial (Trámites, Solicitudes, PQR y Derechos de Petición):
+
+https://www.emca-calarca-quindio.gov.co/peticiones-quejas-reclamos
+
+Tener en cuenta: Cada petición formal tiene un tiempo de respuesta de hasta 15 días hábiles a partir de la fecha de radicación.
+
+Haz clic en el botón de abajo para regresar:`
+
 /**
  * @file SolicitudesFlow.ts
  * @author Juan David Nieto
@@ -12,11 +24,7 @@ import { usuariosPausados } from "../../app.js";
  * una vez finalizada la consulta.
  */
 
-const botones = ['Menú principal']
-const mensajeSolicitudes = `Para mas información y poder gestionar su solicitud le invitamos a ingresar en nuestra página (Tramites , solicitudes, pqr , derechos de petición):
-https://www.emca-calarca-quindio.gov.co/peticiones-quejas-reclamos
 
-Tenga en cuenta que cada petición tiene una duración de respuesta de 15 días hábiles después de la solicitud.`
 
 
 export const SolicitudesFlow = addKeyword(['Solicitudes'])

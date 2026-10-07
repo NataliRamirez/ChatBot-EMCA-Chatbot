@@ -12,6 +12,7 @@ import { join } from 'path'
  * funcionamiento del proveedor de WhatsApp, la gestión de archivos
  * locales y la visualización de contenido multimedia dentro del chatbot.
  */
+
 export const fullSamplesFlow = addKeyword<Provider, Database>([
   'samples',
   utils.setEvent('SAMPLES')

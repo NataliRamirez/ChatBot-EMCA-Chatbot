@@ -5,6 +5,7 @@ import { usuariosPausados } from "../../app.js";
 import { LuminariaApagadaFlow } from "./LuminariaApagada.js";
 import { LuminariaEncendidaFlow } from "./LuminariaEncendida.js";
 
+
 const mensajeAlumbrado = '💡 *REPORTE DE ALUMBRADO PÚBLICO*\n\nPor favor, selecciona una de las siguientes opciones:';
 const botonesAlumbrado = ['Luz Apagada', 'Luz Encendida', 'Comercial'];
 
@@ -16,6 +17,7 @@ const botonesAlumbrado = ['Luz Apagada', 'Luz Encendida', 'Comercial'];
  * seleccionar el tipo de incidencia presentada y redirige al flujo
  * correspondiente para su atención.
  */
+
 
 export const alumbradoFlow = addKeyword(['Alumbrado', 'alumbrado', 'alumbrano', '💡 Alumbrado'])
   .addAction(async (ctx: any, { endFlow }) => {

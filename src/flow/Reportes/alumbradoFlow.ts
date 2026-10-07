@@ -5,6 +5,7 @@ import { LuminariaApagadaFlow } from '../Alumbrado/LuminariaApagada.js';
 import { LuminariaEncendidaFlow } from '../Alumbrado/LuminariaEncendida.js';
 import { usuariosPausados } from '../../app.js';
 
+
 /**
  * @file alumbradoFlow.ts
  * @author Juan David Nieto
@@ -13,6 +14,7 @@ import { usuariosPausados } from '../../app.js';
  * de novedad presentada en una luminaria y redirecciona al flujo
  * correspondiente para registrar el reporte.
  */
+
 
 const mensajeAlumbrado = `💡 Que reporte desea realizar el día de hoy` /**Por confirmar */
 const botonesAlumbrado = ['luminaria Apagada', 'luminaria Encendida', 'Más opciones']

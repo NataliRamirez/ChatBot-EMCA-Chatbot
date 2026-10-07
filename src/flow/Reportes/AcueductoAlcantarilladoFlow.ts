@@ -5,6 +5,7 @@ import { sinServicioAguaFlow } from '../AcueductoAlcantarillado/sinServicioAguaF
 import { alcantarilladoTapadoFlow } from '../AcueductoAlcantarillado/alcantarilladoTapadoFlow.js';
 import { usuariosPausados } from '../../app.js';
 
+
 /**
  * @file AcueductoAlcantarilladoFlow.ts
  * @author Juan David Nieto
@@ -13,6 +14,7 @@ import { usuariosPausados } from '../../app.js';
  * el tipo de novedad presentada y redirecciona automáticamente al flujo
  * correspondiente para su atención.
  */
+
 
 const mensajeAcueducto = '💧 *REPORTE DE ACUEDUCTO Y ALCANTARILLADO*\n\nPor favor, selecciona una de las siguientes opciones:';
 const botones = ['Alcantarillado', 'Fuga de agua', 'Sin servicio'];

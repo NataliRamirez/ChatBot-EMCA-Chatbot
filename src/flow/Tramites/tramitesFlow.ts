@@ -3,6 +3,25 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
 import { masOpcionesFlow } from '../MenusPrincipales/masOpcionesFlow.js'
 import { usuariosPausados } from '../../app.js'
 
+
+
+const mensajeTramites = `TRÁMITES, PQRS Y DERECHOS DE PETICIÓN
+
+Para radicar o hacer seguimiento a tus solicitudes formales, te invitamos a ingresar a nuestra sede electrónica:
+https://www.emca-calarca-quindio.gov.co/peticiones-quejas-reclamos
+
+A través de nuestro portal puedes gestionar:
+
+Peticiones y Solicitudes
+
+Quejas y Reclamos
+
+Derechos de Petición
+
+Tiempo de respuesta: De acuerdo con la normativa, cada solicitud formal cuenta con un plazo de atención de hasta 15 días hábiles a partir de su radicación.
+
+Presiona el botón para regresar al menú principal:`
+
 /**
  * @file tramitesFlow.ts
  * @author Juan David Nieto
@@ -12,17 +31,6 @@ import { usuariosPausados } from '../../app.js'
  * regresar al menú de opciones comerciales una vez finalizada la consulta.
  */
 
-const mensajeTramites = `📝 *TRÁMITES, SOLICITUDES, PQR Y DERECHOS DE PETICIÓN*
-Para más información y poder gestionar su solicitud, le invitamos a ingresar a nuestra página:
-🔗 https://www.emca-calarca-quindio.gov.co/peticiones-quejas-reclamos
-
-Allí podrá realizar:
-• Peticiones
-• Quejas
-• Reclamos
-• Solicitudes
-• Derechos de petición. 
-⏳ Tenga en cuenta que cada petición tiene un tiempo de respuesta de *15 días hábiles* después de radicada.`
 
 const botones = ['Más opciones']
 

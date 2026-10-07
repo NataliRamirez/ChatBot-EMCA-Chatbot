@@ -3,6 +3,37 @@ import { guardarMensaje, obtenerTextoLimpio } from './conexionApi.js'
 import { masOpcionesFlow } from './MenusPrincipales/masOpcionesFlow.js'
 import { usuariosPausados } from '../app.js'
 
+
+const mensajeMedidor = `TRÁMITES Y REPORTES DE MEDIDORES
+
+Para realizar la gestión o reporte de tu medidor de agua:
+
+Revisión técnica de medidor
+
+Cambio o sustitución
+
+Medidor dañado o con fuga
+
+Medidor detenido
+
+Verificación de lectura
+
+Puedes solicitar la atención tanto para medidores adquiridos con EMCA E.S.P. como para medidores propios del usuario.
+
+Líneas de Atención y Reportes:
+
+302 409 1910
+
+302 409 1899
+
+Atención Presencial:
+
+Dirección: Carrera 24 #39-54, Calarcá - Quindío
+
+Horario: Lunes a viernes de 7:30 a.m. a 12:00 m. y de 2:00 p.m. a 5:00 p.m.
+
+Presiona el botón para regresar: `
+
 /**
  * @file medidoresFlow.ts
  * @author Juan David Nieto
@@ -12,7 +43,7 @@ import { usuariosPausados } from '../app.js'
  * de lectura y canales oficiales de atención de EMCA.
  */
 
-const mensajeMedidor = `📟 *MEDIDORES*\n\nPara realizar trámites relacionados con:\n• Revisión de medidor\n• Cambio de medidor\n• Medidor dañado\n• Medidor detenido\n• Verificación de lectura\n\nDebe acercarse a nuestra oficina principal.\n\n📍 *Dirección:* Carrera 24 #39-54, Calarcá - Quindío\n🕒 *Horario de atención:* Lunes a viernes de 7:30 a.m. a 12:00 m y de 2:00 p.m. a 5:00 p.m. o comunicarse a los siguientes numeros 3024091910 o el 3024091899 y hacer el reporte del medidor ya sea que adquiera el servicio con EMCA ESP o propio del usuario `
+
 const botones = ['Menú principal']
 
 export const medidoresFlow = addKeyword(['Medidores', 'medidores', 'medidor'])

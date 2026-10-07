@@ -3,8 +3,10 @@ import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 import { usuariosPausados } from '../../app.js';
 
-const mensajeAlcantarilla = '🗜 *REPORTAR ALCANTARILLADO TAPADO*\n\nHemos resivido su solicitud por lo tanto lo invitamos a realizar su reporte con una imagen o video en el siguiente numero 3024091910 o el 3024091899\n\nPresiona el botón para regresar al menú principal:';
+
+const mensajeAlcantarilla = 'REPORTAR ALCANTARILLADO TAPADO .Hemos recibido tu solicitud. Para programar la revisión técnica de manera rápida, te invitamos a enviar una fotografía o video del daño a nuestra línea directa de atención: WhatsApp de Soporte: 302 409 1910 Haz clic en el botón de abajo si deseas regresar al menú principal:';
 const botones = ['Menú principal']
+
 
 /**
  * @file alcantarilladoTapadoFlow.ts
@@ -14,6 +16,7 @@ const botones = ['Menú principal']
  * los canales oficiales donde puede enviar evidencias fotográficas o videos
  * para la gestión de la solicitud y permite retornar al menú principal.
  */
+
 
 export const alcantarilladoTapadoFlow = addKeyword(['alcantarillado_tapado_action', 'alcantarillado tapado', 'alcantarilla tapada'])
   

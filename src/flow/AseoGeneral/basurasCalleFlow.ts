@@ -3,6 +3,7 @@ import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 import { usuariosPausados } from "../../app.js";
 
+
 const mensajeBasuraCalle = '🗑 *REPORTAR BASURA EN LA CALLE*\n\nHemos registrado tu reporte de falla en el alumbrado público. Por eso lo invitamos a realizar el reporte al siguiente numero telefonico 3024091910 o el 3024091899 y nuestro equipo técnico procederá a verificar el sector.\n\nPresiona el botón para regresar:';
 const botones = ['Menú principal'];
 
@@ -13,6 +14,7 @@ const botones = ['Menú principal'];
  * acumulación de basura en la vía pública, proporcionando los canales de
  * atención correspondientes y permitiendo regresar al menú principal.
  */
+
 
 export const basuraCalleFlow = addKeyword(['basura_calle_action', 'basura en la calle', 'reportar basura'])
   

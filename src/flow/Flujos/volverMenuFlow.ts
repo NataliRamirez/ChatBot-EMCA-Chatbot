@@ -1,6 +1,7 @@
 import { addKeyword } from '@builderbot/bot'
 import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
 
+
 /**
  * @file volverMenuPrincipalFlow.ts
  * @author Juan David Nieto
@@ -8,6 +9,7 @@ import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
  * del chatbot EMCA, permitiendo retornar a las opciones generales de navegación
  * desde cualquier módulo o proceso activo.
  */
+
 
 export const volverMenuPrincipalFlow = addKeyword([
     '1',

@@ -6,6 +6,7 @@ import { usuariosPausados } from "../../app.js";
 const mensajeSolicitudPoda = '🌳 *SOLICITUD DE PODA DE ÁRBOLES Y ZONAS VERDES*\n\nHemos registrado tu reporte de falla en el alumbrado público. Por eso lo invitamos a realizar el reporte al siguiente numero telefonico 3024091910 o el 3024091899 y nuestro equipo técnico procederá a verificar el sector.\n\nPresiona el botón para regresar:';
 const botones = ['Menú principal'];
 
+
 /**
  * @file SolicitudPodaFlow.ts
  * @author Juan David Nieto
@@ -13,6 +14,7 @@ const botones = ['Menú principal'];
  * de poda de árboles y mantenimiento de zonas verdes, proporcionando los
  * canales de atención correspondientes y permitiendo regresar al menú principal.
  */
+
 
 export const SolicitudPodaFlow = addKeyword(['solicitud_poda_action', 'poda de arboles', 'solicitud de poda'])
   
