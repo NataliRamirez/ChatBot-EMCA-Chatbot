@@ -3,10 +3,19 @@ import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 import { usuariosPausados } from "../../app.js";
 
-const mensajeBasuraCalle = 'REPORTAR BASURA EN LA CALLE Hemos registrado tu solicitud sobre la acumulación o recolección de residuos. Para coordinar la atención con la cuadrilla de aseo, te invitamos a compartir la ubicación o fotos del sector a nuestras líneas directas: Líneas de Atención y Reportes: 302 409 1910';
+
+const mensajeBasuraCalle = '🗑 *REPORTAR BASURA EN LA CALLE*\n\nHemos registrado tu reporte de falla en el alumbrado público. Por eso lo invitamos a realizar el reporte al siguiente numero telefonico 3024091910 o el 3024091899 y nuestro equipo técnico procederá a verificar el sector.\n\nPresiona el botón para regresar:';
 const botones = ['Menú principal'];
 
-// Se agregan palabras clave explícitas
+/**
+ * @file basuraCalleFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de orientar a los usuarios en el reporte de
+ * acumulación de basura en la vía pública, proporcionando los canales de
+ * atención correspondientes y permitiendo regresar al menú principal.
+ */
+
+
 export const basuraCalleFlow = addKeyword(['basura_calle_action', 'basura en la calle', 'reportar basura'])
   
 .addAction(async (ctx: any) =>{

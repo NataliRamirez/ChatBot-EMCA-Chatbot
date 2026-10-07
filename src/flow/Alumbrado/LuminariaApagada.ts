@@ -3,8 +3,19 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js';
 import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js';
 import { usuariosPausados } from '../../app.js';
 
-const mensajeLuminariaApagada = 'REPORTE DE ALUMBRADO PÚBLICO Hemos registrado tu novedad sobre la luminaria apagada. Para coordinar la inspección con nuestro equipo técnico, te invitamos a comunicarte o enviar los detalles de la ubicación a nuestras líneas de atención: Líneas de Atención Técnica: 302 409 1910';
+
+const mensajeLuminariaApagada = '🔦 *REPORTAR LUMINARIA APAGADA*\n\nHemos registrado tu reporte de falla en el alumbrado público. Por eso lo invitamos a realizar el reporte al siguiente numero telefonico 3024091910 o el 3024091899 y nuestro equipo técnico procederá a verificar el sector.\n\nPresiona el botón para regresar al menú principal:';
 const botones = [ 'Menú principal' ]
+
+/**
+ * @file LuminariaApagadaFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo conversacional encargado de atender reportes
+ * relacionados con luminarias apagadas en el sistema de alumbrado público.
+ * El sistema informa al usuario los canales oficiales de atención y permite
+ * regresar al menú principal del chatbot.
+ */
+
 
 export const LuminariaApagadaFlow = addKeyword([
   'luminaria apagada', 

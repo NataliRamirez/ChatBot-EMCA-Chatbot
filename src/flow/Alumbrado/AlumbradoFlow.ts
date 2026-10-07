@@ -5,8 +5,19 @@ import { usuariosPausados } from "../../app.js";
 import { LuminariaApagadaFlow } from "./LuminariaApagada.js";
 import { LuminariaEncendidaFlow } from "./LuminariaEncendida.js";
 
-const mensajeAlumbrado = '*REPORTE DE ALUMBRADO PÚBLICO*\n\nPor favor, selecciona una de las siguientes opciones:';
+
+const mensajeAlumbrado = '💡 *REPORTE DE ALUMBRADO PÚBLICO*\n\nPor favor, selecciona una de las siguientes opciones:';
 const botonesAlumbrado = ['Luz Apagada', 'Luz Encendida', 'Comercial'];
+
+/**
+ * @file alumbradoFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo conversacional encargado de gestionar los reportes
+ * relacionados con el servicio de alumbrado público. Permite al usuario
+ * seleccionar el tipo de incidencia presentada y redirige al flujo
+ * correspondiente para su atención.
+ */
+
 
 export const alumbradoFlow = addKeyword(['Alumbrado', 'alumbrado', 'alumbrano', '💡 Alumbrado'])
   .addAction(async (ctx: any, { endFlow }) => {

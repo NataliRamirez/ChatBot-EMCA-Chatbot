@@ -3,6 +3,7 @@ import { guardarMensaje, obtenerTextoLimpio } from './conexionApi.js'
 import { masOpcionesFlow } from './MenusPrincipales/masOpcionesFlow.js'
 import { usuariosPausados } from '../app.js'
 
+
 const mensajeMedidor = `TRÁMITES Y REPORTES DE MEDIDORES
 
 Para realizar la gestión o reporte de tu medidor de agua:
@@ -32,6 +33,17 @@ Dirección: Carrera 24 #39-54, Calarcá - Quindío
 Horario: Lunes a viernes de 7:30 a.m. a 12:00 m. y de 2:00 p.m. a 5:00 p.m.
 
 Presiona el botón para regresar: `
+
+/**
+ * @file medidoresFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo informativo encargado de orientar a los usuarios sobre
+ * los trámites y solicitudes relacionados con medidores de servicios públicos.
+ * Permite consultar información sobre revisiones, cambios, daños, verificaciones
+ * de lectura y canales oficiales de atención de EMCA.
+ */
+
+
 const botones = ['Menú principal']
 
 export const medidoresFlow = addKeyword(['Medidores', 'medidores', 'medidor'])

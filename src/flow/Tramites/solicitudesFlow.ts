@@ -3,6 +3,7 @@ import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 import { usuariosPausados } from "../../app.js";
 
+
 const botones = ['Menú principal']
 const mensajeSolicitudes = `MÁS INFORMACIÓN Y GESTIÓN DE SOLICITUDES
 
@@ -13,6 +14,17 @@ https://www.emca-calarca-quindio.gov.co/peticiones-quejas-reclamos
 Tener en cuenta: Cada petición formal tiene un tiempo de respuesta de hasta 15 días hábiles a partir de la fecha de radicación.
 
 Haz clic en el botón de abajo para regresar:`
+
+/**
+ * @file SolicitudesFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo informativo encargado de brindar al usuario el enlace
+ * oficial para la gestión de solicitudes, peticiones, quejas, reclamos
+ * y derechos de petición de EMCA. Permite redirigir al menú principal
+ * una vez finalizada la consulta.
+ */
+
+
 
 
 export const SolicitudesFlow = addKeyword(['Solicitudes'])

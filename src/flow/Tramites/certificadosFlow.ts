@@ -3,6 +3,7 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
 import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
 import { usuariosPausados } from '../../app.js'
 
+
 const mensajeCertificado = `SOLICITUD DE CERTIFICADOS
 
 Puedes tramitar las siguientes certificaciones:
@@ -17,6 +18,17 @@ Te invitamos a realizar tu trámite de forma presencial o comunicándote a nuest
 ⏰ Horario de atención: Lunes a viernes de 7:30 a.m. a 12:00 m. y de 2:00 p.m. a 5:00 p.m.
 
 Haz clic en el botón de abajo para regresar:`
+
+/**
+ * @file certificadosFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de suministrar información relacionada con
+ * la solicitud de certificados ofrecidos por EMCA. Permite consultar los
+ * tipos de certificados disponibles, los canales de atención y retornar
+ * posteriormente al menú principal del chatbot.
+ */
+
+
 const botones = ['Menú principal']
 
 export const certificadosFlow = addKeyword(['📄 Certificados', 'certificados'])

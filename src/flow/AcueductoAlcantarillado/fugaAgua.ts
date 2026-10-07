@@ -3,8 +3,19 @@ import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 import { usuariosPausados } from '../../app.js';
 
-const mensajeFugaAgua = 'GESTIÓN DE FUGAS E IMPREVISTOS ¡Gracias por reportar con EMCA! Para coordinar la visita de la cuadrilla operativa y atender la fuga, por favor envía la dirección exacta o fotos del daño al siguiente número: Línea de Cuadrilla Operativa: 302 409 1910 Presiona el botón para volver al menú de opciones:';
+
+
+const mensajeFugaAgua = '💧 *REPORTAR FUGA DE AGUA*\n\nHemos recibido su reporte por eso lo invitamos a realizar su reporte en los siguientes numeros 3024091920 o el 3024091899\n\nPresiona el botón para regresar al menú principal:';
 const botones = ['Menú principal']
+
+/**
+ * @file fugaAguaFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo conversacional encargado de atender los reportes
+ * relacionados con fugas de agua. El sistema informa al usuario los canales
+ * oficiales habilitados para reportar este tipo de incidencias y permite
+ * regresar al menú principal del chatbot.
+ */
 
 
 export const fugaAguaFlow = addKeyword(['fuga_agua_action_event', 'fuga de agua', 'reportar fuga'])

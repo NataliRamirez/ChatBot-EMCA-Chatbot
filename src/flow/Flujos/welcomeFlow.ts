@@ -1,172 +1,491 @@
 import { addKeyword, EVENTS } from '@builderbot/bot';
-import { guardarMensaje, registrarUsuarioBot } from '../conexionApi.js';
+
+import {
+  guardarMensaje,
+  registrarUsuarioBot
+} from '../conexionApi.js';
+
 import { conversacionalOrquestadorFlow } from '../conversacionalOrquestador/conversacionalOrquestadorFlow.js';
+
 import { usuariosPausados } from '../../app.js';
 
-const mensajeBienvenidaNuevo = `👋 ¡Hola! Bienvenido al sistema de atención virtual de *EMCA*.\n\nPara brindarte una atención personalizada, necesitamos realizar un registro rápido por única vez.\n\nPor favor, escribe tu *Nombre completo*:`;
-const mensajePideCedula = `🆔 ¡Gracias! Ahora, ingresa tu número de *Cédula o Documento de Identidad* (solo números, sin puntos ni espacios):`;
-const mensajePideEmail = `📧 Excelente. Por último, ingresa tu *Correo Electrónico*:`;
+/**
+ * @file welcomeFlow.ts
+ * @author Juan David Nieto
+ * @description
+ * Flujo de bienvenida y registro inicial del chatbot de EMCA.
+ *
+ * Se encarga de:
+ * - Verificar si el usuario ya existe.
+ * - Validar si el bot está activo para el usuario.
+ * - Solicitar nombre completo.
+ * - Solicitar cédula.
+ * - Solicitar correo electrónico.
+ * - Registrar al usuario en la API.
+ * - Redirigir al flujo conversacional principal.
+ */
+
+// =========================================================
+// MENSAJES
+// =========================================================
+
+const mensajeBienvenidaNuevo = `
+👋 ¡Hola! Bienvenido al sistema de atención virtual de *EMCA*.
+
+Para brindarte una atención personalizada, necesitamos realizar un registro rápido por única vez.
+
+Por favor, escribe tu *Nombre completo*:
+`;
+
+const mensajePideCedula = `
+🆔 ¡Gracias! Ahora, ingresa tu número de *Cédula o Documento de Identidad* (sin puntos ni espacios):
+`;
+
+const mensajePideEmail = `
+📧 Excelente. Por último, ingresa tu *Correo Electrónico*:
+`;
+
+// =========================================================
+// UTILIDADES
+// =========================================================
 
 const limpiarTelefono = (phone: string): string => {
   if (!phone) return '';
-  return String(phone).replace(/@c\.us|@s\.whatsapp.net/g, '').replace(/\D/g, '');
+
+  return String(phone)
+    .replace(/@c\.us|@s\.whatsapp\.net/g, '')
+    .replace(/\D/g, '');
 };
 
-const guardarMensajeBackground = (telefono: string, mensaje: string, emisor: string, tipo: string) => {
+// =========================================================
+// GUARDAR MENSAJES EN SEGUNDO PLANO
+// =========================================================
+
+const guardarMensajeBackground = (
+  telefono: string,
+  mensaje: string,
+  emisor: string,
+  tipo: string
+) => {
   Promise.resolve().then(async () => {
     try {
-      await guardarMensaje(telefono, mensaje, emisor, [], null, tipo);
+      await guardarMensaje(
+        telefono,
+        mensaje,
+        emisor,
+        [],
+        null,
+        tipo
+      );
     } catch (err: any) {
-      console.error(`⚠️ Error guardando mensaje en BG (${emisor}):`, err?.message || err);
+      console.error(
+        `⚠️ Error guardando mensaje en BG (${emisor}):`,
+        err?.message || err
+      );
     }
   });
 };
 
-export const welcomeFlow = addKeyword([EVENTS.WELCOME, 'hola', 'buenas', 'hi', 'hello', 'inicio', 'start'])
-  .addAction(async (ctx: any, { gotoFlow, endFlow, state }) => {
-    const telefono = limpiarTelefono(ctx.from);
-    const bodyText = String(ctx.body || '').trim();
+// =========================================================
+// FLUJO DE BIENVENIDA
+// =========================================================
 
-    if (usuariosPausados.has(telefono) || bodyText.startsWith('_event_')) {
-      return endFlow();
-    }
+export const welcomeFlow = addKeyword([
+  EVENTS.WELCOME,
+  'hola',
+  'buenas',
+  'hi',
+  'hello',
+  'inicio',
+  'start'
+])
 
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 2000);
+  // =========================================================
+  // VERIFICAR SI EL USUARIO YA ESTÁ REGISTRADO
+  // =========================================================
 
-      const res = await fetch(`http://127.0.0.1:4000/v1/user/${telefono}`, {
-        headers: { 'x-api-key': process.env.API_KEY || 'EmcaSecret2026' },
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-
-      if (res.ok) {
-        const user = await res.json();
-
-        if (Number(user?.bot_activo) === 0) {
-          usuariosPausados.add(telefono);
-          return endFlow();
-        }
-
-        // Si el usuario ya está totalmente registrado en BD, va directo al orquestador
-        if (user && user.cedula && user.nombre && user.email) {
-          const primerNombre = user.nombre.split(' ')[0];
-          await state.update({ nombre: primerNombre, cedula: user.cedula, email: user.email, enRegistro: false });
-          return gotoFlow(conversacionalOrquestadorFlow);
-        }
-      }
-    } catch (error) {
-      console.error('❌ Error/Timeout verificando usuario en welcomeFlow:', error);
-    }
-
-    // Marcamos el inicio del proceso de registro
-    await state.update({ enRegistro: true });
-  })
-
-  // ==========================================
-  // PASO 1: CAPTURA OBLIGATORIA DE NOMBRE
-  // ==========================================
-  .addAnswer(
-    mensajeBienvenidaNuevo,
-    { capture: true },
-    async (ctx: any, { state, fallBack, gotoFlow }: any) => {
-      const currentState = state.getMyState() || {};
-      
-      if (currentState.cedula && currentState.email) {
-        return gotoFlow(conversacionalOrquestadorFlow);
-      }
-
-      const nombreInput = String(ctx.body || '').trim();
-
-      // Validación: Mínimo 3 letras y no puede contener solo números
-      if (!nombreInput || nombreInput.length < 3 || /^\d+$/.test(nombreInput)) {
-        return fallBack('⚠️ Por favor ingresa un nombre y apellido válido (mínimo 3 caracteres, sin números).');
-      }
-
-      await state.update({ nombre: nombreInput });
-      guardarMensajeBackground(ctx.from, mensajeBienvenidaNuevo, 'BOT', 'BOT_TEXTO');
-    }
-  )
-
-  // ==========================================
-  // PASO 2: CAPTURA OBLIGATORIA DE CÉDULA
-  // ==========================================
-  .addAnswer(
-    mensajePideCedula,
-    { capture: true },
-    async (ctx: any, { state, fallBack }: any) => {
-      const rawInput = String(ctx.body || '').trim();
-      
-      // Sanitizamos quitando espacios o puntos adicionales que escriba el usuario
-      const cedulaLimpia = rawInput.replace(/[\s.-]/g, '');
-
-      // Regex: Debe ser numérico y tener entre 5 y 10 dígitos (ajustable según requerimiento)
-      const cedulaValidaRegex = /^[0-9]{5,10}$/;
-
-      if (!cedulaValidaRegex.test(cedulaLimpia)) {
-        return fallBack('⚠️ Número de cédula inválido. Por favor ingresa solo números (de 5 a 10 dígitos, sin puntos ni comas).');
-      }
-
-      // Guardamos la cédula limpia en el estado
-      await state.update({ cedula: cedulaLimpia });
-      guardarMensajeBackground(ctx.from, mensajePideCedula, 'BOT', 'BOT_TEXTO');
-    }
-  )
-
-  // ==========================================
-  // PASO 3: CAPTURA OBLIGATORIA DE EMAIL Y REGISTRO FINAL
-  // ==========================================
-  .addAnswer(
-    mensajePideEmail,
-    { capture: true },
-    async (ctx: any, { state, fallBack, flowDynamic, gotoFlow }: any) => {
-      const emailInput = String(ctx.body || '').trim().toLowerCase();
-
-      // Expressión regular estándar para correos
-      const validacionEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-      if (!emailInput || !validacionEmailRegex.test(emailInput)) {
-        return fallBack('⚠️ Correo electrónico inválido. Por favor ingresa una dirección válida (ejemplo: usuario@gmail.com).');
-      }
-
-      await state.update({ email: emailInput });
-      
-      const userData = state.getMyState() || {};
+  .addAction(
+    async (ctx: any, { gotoFlow, endFlow, state }: any) => {
       const telefono = limpiarTelefono(ctx.from);
+      const bodyText = String(ctx.body || '').trim();
 
-      // Verificación de seguridad extra antes de llamar a la API
-      if (!userData.nombre || !userData.cedula || !userData.email) {
-        return fallBack('Faltan datos obligatorios para el registro. Por favor escribe tu correo electrónico nuevamente:');
+      // -----------------------------------------------------
+      // VERIFICAR USUARIOS PAUSADOS
+      // -----------------------------------------------------
+
+      if (
+        usuariosPausados.has(telefono) ||
+        bodyText.startsWith('_event_')
+      ) {
+        return endFlow();
       }
 
       try {
-        const resultadoApi: any = await registrarUsuarioBot({
-          telefono,
-          nombre: userData.nombre,
-          cedula: userData.cedula,
-          email: userData.email
-        });
+        // ---------------------------------------------------
+        // CONSULTAR USUARIO EN LA API
+        // ---------------------------------------------------
 
-        if (resultadoApi && resultadoApi.success !== false) {
-          const primerNombre = (userData.nombre || '').split(' ')[0];
-          await state.update({ nombre: primerNombre, enRegistro: false });
+        const controller = new AbortController();
 
-          const mensajeExito = `✅ *¡Registro completado con éxito!*\n\n¡Bienvenido, ${primerNombre}! Es un placer atenderte.`;
+        const timeoutId = setTimeout(() => {
+          controller.abort();
+        }, 2000);
 
-          await flowDynamic(mensajeExito);
-          guardarMensajeBackground(ctx.from, mensajeExito, 'BOT', 'BOT_TEXTO');
+        const res = await fetch(
+          `http://127.0.0.1:4000/v1/user/${telefono}`,
+          {
+            headers: {
+              'x-api-key':
+                process.env.API_KEY || 'EmcaSecret2026'
+            },
+            signal: controller.signal
+          }
+        );
 
-          // Pasa al menú / orquestador principal
-          return gotoFlow(conversacionalOrquestadorFlow);
-        } else {
-          await state.update({ enRegistro: false });
-          return flowDynamic("❌ Hubo un problema al guardar tus datos en el servidor. Por favor, escribe *Hola* para reiniciar el registro.");
+        clearTimeout(timeoutId);
+
+        // ---------------------------------------------------
+        // USUARIO ENCONTRADO
+        // ---------------------------------------------------
+
+        if (res.ok) {
+          const user = await res.json();
+
+          // -----------------------------------------------
+          // BOT DESACTIVADO
+          // -----------------------------------------------
+
+          if (Number(user?.bot_activo) === 0) {
+            usuariosPausados.add(telefono);
+
+            return endFlow();
+          }
+
+          // -----------------------------------------------
+          // USUARIO COMPLETAMENTE REGISTRADO
+          // -----------------------------------------------
+
+          if (
+            user &&
+            user.cedula &&
+            user.nombre &&
+            user.email
+          ) {
+            const primerNombre = String(user.nombre)
+              .split(' ')[0];
+
+            await state.update({
+              nombre: primerNombre,
+              cedula: user.cedula,
+              email: user.email,
+              enRegistro: false
+            });
+
+            return gotoFlow(
+              conversacionalOrquestadorFlow
+            );
+          }
         }
       } catch (error) {
-        console.error("❌ Error en registro API:", error);
-        await state.update({ enRegistro: false });
-        return flowDynamic("⚠️ Ocurrió un error con el servidor durante el registro. Escribe *Hola* para reintentar.");
+        console.error(
+          '❌ Error/Timeout verificando usuario en welcomeFlow:',
+          error
+        );
+      }
+
+      // -----------------------------------------------------
+      // EL USUARIO NO ESTÁ REGISTRADO
+      // -----------------------------------------------------
+
+      await state.update({
+        enRegistro: true
+      });
+    }
+  )
+
+  // =========================================================
+  // PASO 1: CAPTURA DEL NOMBRE
+  // =========================================================
+
+  .addAnswer(
+    mensajeBienvenidaNuevo,
+    {
+      capture: true
+    },
+    async (
+      ctx: any,
+      { state, fallBack }: any
+    ) => {
+      const currentState =
+        state.getMyState() || {};
+
+      // -----------------------------------------------------
+      // SI YA ESTÁ REGISTRADO, NO VOLVER A REGISTRAR
+      // -----------------------------------------------------
+
+      if (
+        currentState.cedula &&
+        currentState.email
+      ) {
+        return;
+      }
+
+      const nombreInput = String(
+        ctx.body || ''
+      ).trim();
+
+      // -----------------------------------------------------
+      // VALIDAR NOMBRE
+      // -----------------------------------------------------
+
+      if (
+        !nombreInput ||
+        nombreInput.length < 3
+      ) {
+        return fallBack(
+          '⚠️ Por favor ingresa un nombre válido (mínimo 3 caracteres).'
+        );
+      }
+
+      // -----------------------------------------------------
+      // GUARDAR NOMBRE
+      // -----------------------------------------------------
+
+      await state.update({
+        nombre: nombreInput
+      });
+
+      guardarMensajeBackground(
+        ctx.from,
+        mensajeBienvenidaNuevo,
+        'BOT',
+        'BOT_TEXTO'
+      );
+    }
+  )
+
+  // =========================================================
+  // PASO 2: CAPTURA DE CÉDULA
+  // =========================================================
+
+  .addAnswer(
+    mensajePideCedula,
+    {
+      capture: true
+    },
+    async (
+      ctx: any,
+      { state, fallBack }: any
+    ) => {
+      const rawInput = String(
+        ctx.body || ''
+      ).trim();
+
+      // -----------------------------------------------------
+      // LIMPIAR CÉDULA
+      // -----------------------------------------------------
+
+      const cedulaLimpia = rawInput.replace(
+        /[\s.-]/g,
+        ''
+      );
+
+      // -----------------------------------------------------
+      // VALIDAR CÉDULA
+      // Entre 5 y 10 dígitos
+      // -----------------------------------------------------
+
+      const cedulaValidaRegex =
+        /^[0-9]{5,10}$/;
+
+      if (
+        !cedulaValidaRegex.test(
+          cedulaLimpia
+        )
+      ) {
+        return fallBack(
+          '⚠️ Número de cédula inválido. Por favor ingresa solo números (de 5 a 10 dígitos, sin puntos ni comas).'
+        );
+      }
+
+      // -----------------------------------------------------
+      // GUARDAR CÉDULA
+      // -----------------------------------------------------
+
+      await state.update({
+        cedula: cedulaLimpia
+      });
+
+      guardarMensajeBackground(
+        ctx.from,
+        mensajePideCedula,
+        'BOT',
+        'BOT_TEXTO'
+      );
+    }
+  )
+
+  // =========================================================
+  // PASO 3: CAPTURA DE EMAIL
+  // =========================================================
+
+  .addAnswer(
+    mensajePideEmail,
+    {
+      capture: true
+    },
+    async (
+      ctx: any,
+      {
+        state,
+        fallBack,
+        flowDynamic,
+        gotoFlow
+      }: any
+    ) => {
+      const emailInput = String(
+        ctx.body || ''
+      )
+        .trim()
+        .toLowerCase();
+
+      // -----------------------------------------------------
+      // VALIDAR EMAIL
+      // -----------------------------------------------------
+
+      const validacionEmailRegex =
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (
+        !emailInput ||
+        !validacionEmailRegex.test(
+          emailInput
+        )
+      ) {
+        return fallBack(
+          '⚠️ Correo electrónico inválido. Por favor ingresa una dirección válida (ejemplo: usuario@gmail.com).'
+        );
+      }
+
+      // -----------------------------------------------------
+      // GUARDAR EMAIL
+      // -----------------------------------------------------
+
+      await state.update({
+        email: emailInput
+      });
+
+      // -----------------------------------------------------
+      // OBTENER TODOS LOS DATOS
+      // -----------------------------------------------------
+
+      const userData =
+        state.getMyState() || {};
+
+      const telefono = limpiarTelefono(
+        ctx.from
+      );
+
+      // -----------------------------------------------------
+      // VERIFICACIÓN FINAL
+      // -----------------------------------------------------
+
+      if (
+        !userData.nombre ||
+        !userData.cedula ||
+        !userData.email
+      ) {
+        return fallBack(
+          '⚠️ Faltan datos obligatorios para el registro. Por favor escribe tu correo electrónico nuevamente:'
+        );
+      }
+
+      try {
+        // ===================================================
+        // REGISTRAR USUARIO EN LA API
+        // ===================================================
+
+        const resultadoApi: any =
+          await registrarUsuarioBot({
+            telefono,
+            nombre: userData.nombre,
+            cedula: userData.cedula,
+            email: userData.email
+          });
+
+        // ===================================================
+        // REGISTRO EXITOSO
+        // ===================================================
+
+        if (
+          resultadoApi &&
+          resultadoApi.success !== false
+        ) {
+          const primerNombre =
+            String(userData.nombre)
+              .split(' ')[0];
+
+          await state.update({
+            nombre: primerNombre,
+            enRegistro: false
+          });
+
+          const mensajeExito = `
+✅ *¡Registro completado con éxito!*
+
+¡Bienvenido, ${primerNombre}! Es un placer atenderte.
+`;
+
+          await flowDynamic(
+            mensajeExito
+          );
+
+          guardarMensajeBackground(
+            ctx.from,
+            mensajeExito,
+            'BOT',
+            'BOT_TEXTO'
+          );
+
+          // -----------------------------------------------
+          // IR AL ORQUESTADOR PRINCIPAL
+          // -----------------------------------------------
+
+          return gotoFlow(
+            conversacionalOrquestadorFlow
+          );
+        }
+
+        // ===================================================
+        // ERROR DE REGISTRO
+        // ===================================================
+
+        await state.update({
+          enRegistro: false
+        });
+
+        return flowDynamic(
+          '❌ Hubo un problema al guardar tus datos en el servidor. Por favor, escribe *Hola* para reiniciar el registro.'
+        );
+
+      } catch (error) {
+        // ===================================================
+        // ERROR DE API
+        // ===================================================
+
+        console.error(
+          '❌ Error en registro API:',
+          error
+        );
+
+        await state.update({
+          enRegistro: false
+        });
+
+        return flowDynamic(
+          '⚠️ Ocurrió un error con el servidor durante el registro. Escribe *Hola* para reintentar.'
+        );
       }
     }
   );
+

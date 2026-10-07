@@ -12,7 +12,6 @@ import {
 import { MetaProvider as Provider } from '@builderbot/provider-meta';
 
 import { guardarMensaje } from './flow/conexionApi.js';
-
 import { blackholeFlow } from './flow/Multimedias/blackholFlow.js';
 
 dotenv.config();
@@ -34,7 +33,7 @@ const limpiarTelefono = (phone: string): string => {
   if (!phone) return '';
 
   return String(phone)
-    .replace(/@c\.us|@s\.whatsapp.net/g, '')
+    .replace(/@c\.us|@s\.whatsapp\.net/g, '')
     .replace(/\D/g, '');
 };
 
@@ -53,9 +52,7 @@ const obtenerUploadsFolder = (): string => {
       recursive: true
     });
 
-    console.log(
-      `📁 Carpeta uploads creada: ${uploadsFolder}`
-    );
+    console.log(`📁 Carpeta uploads creada: ${uploadsFolder}`);
   }
 
   return uploadsFolder;
@@ -92,7 +89,6 @@ const detectarTipoMedia = (ctx: any): string => {
 ========================================================= */
 
 const main = async () => {
-
   /* =======================================================
      IMPORTAR FLOWS
   ======================================================= */
@@ -177,6 +173,8 @@ const main = async () => {
   const { certificadosFlow } =
     await import('./flow/Tramites/certificadosFlow.js');
 
+  const { mediaFlow } =
+    await import('./flow/Multimedias/mediaFlow.js');
 
   const { volverMenuPrincipalFlow } =
     await import('./flow/Flujos/volverMenuFlow.js');
@@ -211,30 +209,41 @@ const main = async () => {
 
   const adapterFlow = createFlow([
     blackholeFlow,
+
     welcomeFlow,
     conversacionalOrquestadorFlow,
+
     menuPrincipalFlow,
     masOpcionesFlow,
     masOpciones2Flow,
     masOpciones3Flow,
+
     horariosFlow,
+    lineasFlow,
+
     alumbradoFlow,
     comercialFlow,
     LuminariaApagadaFlow,
     LuminariaEncendidaFlow,
+
     reportesFlow,
     AcueductoAlcantarilladoFlow,
     fugaAguaFlow,
     sinServicioAguaFlow,
     alcantarilladoTapadoFlow,
+
     asesorFlow,
     MatriculaFlow,
+
     basuraCalleFlow,
     recolecionEspecialesFlow,
     SolicitudPodaFlow,
+
     volverMenuPrincipalFlow,
-    lineasFlow,
+
+    mediaFlow,
     aseoFlow,
+
     certificadosFlow,
     dobleFacturacionFlow,
     predioDesocupadoFlow,
@@ -247,19 +256,12 @@ const main = async () => {
   ======================================================= */
 
   const adapterProvider = createProvider(Provider, {
-
     jwtToken: process.env.jwtToken,
-
     numberId: process.env.numberId,
-
     verifyToken: process.env.verifyToken,
-
     version: 'v25.0',
-
     downloadMedia: true,
-
     port: +PORT
-
   });
 
   console.log('==========================================');
@@ -275,20 +277,17 @@ const main = async () => {
     handleCtx,
     httpServer
   } = await createBot(
-
     {
       flow: adapterFlow,
       provider: adapterProvider,
       database: adapterDB
     },
-
     {
       queue: {
         timeout: 60000,
         concurrencyLimit: 5
       }
     }
-
   );
 
   httpServer(+PORT);
@@ -298,13 +297,9 @@ const main = async () => {
   ======================================================= */
 
   adapterProvider.server.post(
-
     '/v1/messages',
-
     handleCtx(async (bot, req, res) => {
-
       try {
-
         const {
           number,
           message,
@@ -315,9 +310,7 @@ const main = async () => {
         } = req.body || {};
 
         const multimediaUrl =
-          urlMedia ||
-          media ||
-          null;
+          urlMedia || media || null;
 
         /* ---------------------------------------------------
            VALIDAR DATOS
@@ -326,12 +319,10 @@ const main = async () => {
         if (
           !number ||
           (
-            (!message ||
-              String(message).trim() === '') &&
+            (!message || String(message).trim() === '') &&
             !multimediaUrl
           )
         ) {
-
           res.writeHead(400, {
             'Content-Type': 'application/json'
           });
@@ -342,18 +333,15 @@ const main = async () => {
               error: 'Faltan parámetros requeridos'
             })
           );
-
         }
 
         /* ---------------------------------------------------
            LIMPIAR TELÉFONO
         --------------------------------------------------- */
 
-        const cleanNumber =
-          limpiarTelefono(number);
+        const cleanNumber = limpiarTelefono(number);
 
         if (!cleanNumber) {
-
           res.writeHead(400, {
             'Content-Type': 'application/json'
           });
@@ -364,36 +352,26 @@ const main = async () => {
               error: 'Número de teléfono inválido'
             })
           );
-
         }
 
         /* ---------------------------------------------------
            DETERMINAR TIPO
         --------------------------------------------------- */
 
-        const esMultimedia =
-          Boolean(multimediaUrl);
+        const esMultimedia = Boolean(multimediaUrl);
 
         const textoFinal =
-          esMultimedia
-            ? String(message || '').trim()
-            : String(message || '').trim();
+          String(message || '').trim();
 
-        let tipoFinal =
-          tipoMensaje;
+        let tipoFinal = tipoMensaje;
 
         if (!tipoFinal) {
-
-          tipoFinal =
-            esMultimedia
-              ? 'ADMIN_DOCUMENTO'
-              : 'ADMIN_TEXTO';
-
+          tipoFinal = esMultimedia
+            ? 'ADMIN_DOCUMENTO'
+            : 'ADMIN_TEXTO';
         }
 
-        console.log(
-          '📤 ADMIN → WHATSAPP'
-        );
+        console.log('📤 ADMIN → WHATSAPP');
 
         console.log({
           telefono: cleanNumber,
@@ -420,19 +398,12 @@ const main = async () => {
         --------------------------------------------------- */
 
         await guardarMensaje(
-
           cleanNumber,
-
           textoFinal,
-
           'ADMIN',
-
           buttons ?? [],
-
           multimediaUrl,
-
           tipoFinal
-
         );
 
         console.log(
@@ -455,7 +426,6 @@ const main = async () => {
         );
 
       } catch (error: any) {
-
         console.error(
           '❌ Error enviando mensaje desde ADMIN:',
           error
@@ -473,11 +443,8 @@ const main = async () => {
               'Error enviando mensaje'
           })
         );
-
       }
-
     })
-
   );
 
   /* =======================================================
@@ -487,18 +454,13 @@ const main = async () => {
   adapterProvider.server.post(
     '/v1/pausar-bot-local',
     (req: any, res: any) => {
-
       try {
-
-        const {
-          telefono
-        } = req.body || {};
+        const { telefono } = req.body || {};
 
         const cleanNumber =
           limpiarTelefono(telefono);
 
         if (!cleanNumber) {
-
           res.writeHead(400, {
             'Content-Type': 'application/json'
           });
@@ -509,12 +471,9 @@ const main = async () => {
               error: 'Número inválido'
             })
           );
-
         }
 
-        usuariosPausados.add(
-          cleanNumber
-        );
+        usuariosPausados.add(cleanNumber);
 
         console.log(
           `🛑 BOT PAUSADO PARA: ${cleanNumber}`
@@ -533,7 +492,6 @@ const main = async () => {
         );
 
       } catch (error: any) {
-
         console.error(
           '❌ Error pausando bot:',
           error
@@ -551,9 +509,7 @@ const main = async () => {
               'Error pausando bot'
           })
         );
-
       }
-
     }
   );
 
@@ -564,18 +520,13 @@ const main = async () => {
   adapterProvider.server.post(
     '/v1/reactivar-local',
     (req: any, res: any) => {
-
       try {
-
-        const {
-          telefono
-        } = req.body || {};
+        const { telefono } = req.body || {};
 
         const cleanNumber =
           limpiarTelefono(telefono);
 
         if (!cleanNumber) {
-
           res.writeHead(400, {
             'Content-Type': 'application/json'
           });
@@ -586,12 +537,9 @@ const main = async () => {
               error: 'Número inválido'
             })
           );
-
         }
 
-        usuariosPausados.delete(
-          cleanNumber
-        );
+        usuariosPausados.delete(cleanNumber);
 
         console.log(
           `🤖 BOT REACTIVADO PARA: ${cleanNumber}`
@@ -610,7 +558,6 @@ const main = async () => {
         );
 
       } catch (error: any) {
-
         console.error(
           '❌ Error reactivando bot:',
           error
@@ -628,9 +575,7 @@ const main = async () => {
               'Error reactivando bot'
           })
         );
-
       }
-
     }
   );
 
@@ -641,9 +586,7 @@ const main = async () => {
   adapterProvider.on(
     'message',
     async (ctx: any) => {
-
       try {
-
         /* ---------------------------------------------------
            TELÉFONO
         --------------------------------------------------- */
@@ -652,14 +595,12 @@ const main = async () => {
           limpiarTelefono(ctx?.from);
 
         if (!telefono) {
-
           console.log(
             '⚠️ Mensaje recibido sin teléfono:',
             ctx
           );
 
           return;
-
         }
 
         /* ---------------------------------------------------
@@ -671,12 +612,8 @@ const main = async () => {
             ? ctx.body
             : '';
 
-        if (
-          body.startsWith('_event_')
-        ) {
-
+        if (body.startsWith('_event_')) {
           return;
-
         }
 
         /* ---------------------------------------------------
@@ -684,12 +621,9 @@ const main = async () => {
         --------------------------------------------------- */
 
         const botPausado =
-          usuariosPausados.has(
-            telefono
-          );
+          usuariosPausados.has(telefono);
 
         if (botPausado) {
-
           console.log(
             `🛑 ${telefono} está siendo atendido por ADMIN.`
           );
@@ -697,14 +631,13 @@ const main = async () => {
           console.log(
             '💾 El mensaje se guardará igualmente.'
           );
-
         }
 
         /* ---------------------------------------------------
            TEXTO
         --------------------------------------------------- */
 
-        let textoMensaje =
+        const textoMensaje =
           body.trim();
 
         /* ---------------------------------------------------
@@ -724,9 +657,7 @@ const main = async () => {
           tipoMensaje !== 'USUARIO_TEXTO';
 
         if (esMultimedia) {
-
           try {
-
             const uploadsFolder =
               obtenerUploadsFolder();
 
@@ -757,12 +688,10 @@ const main = async () => {
               localPath &&
               fs.existsSync(localPath)
             ) {
-
               const fileName =
                 path.basename(localPath);
 
-              mediaUrl =
-                fileName;
+              mediaUrl = fileName;
 
               console.log(
                 `💾 Multimedia guardada: ${fileName}`
@@ -773,22 +702,17 @@ const main = async () => {
               );
 
             } else {
-
               console.error(
                 '❌ Builderbot no devolvió una ruta válida para el multimedia.'
               );
-
             }
 
           } catch (mediaError) {
-
             console.error(
               '❌ Error guardando multimedia:',
               mediaError
             );
-
           }
-
         }
 
         /* ---------------------------------------------------
@@ -799,7 +723,6 @@ const main = async () => {
           textoMensaje !== '' ||
           mediaUrl
         ) {
-
           console.log(
             '💾 Guardando mensaje USUARIO:',
             {
@@ -812,19 +735,12 @@ const main = async () => {
           );
 
           await guardarMensaje(
-
             telefono,
-
             textoMensaje,
-
             'USUARIO',
-
             [],
-
             mediaUrl,
-
             tipoMensaje
-
           );
 
           console.log(
@@ -832,34 +748,29 @@ const main = async () => {
           );
 
         } else {
-
           console.log(
             `⚠️ No se encontró contenido para guardar de ${telefono}`
           );
-
         }
 
-        /* ---------------------------------------------------
-           IMPORTANTE
-           
-           NO hacemos return por estar pausado antes
-           de guardar.
+        /*
+          IMPORTANTE:
 
-           El listener solamente registra el mensaje.
+          NO hacemos return por estar pausado antes
+          de guardar.
 
-           El bloqueo real de la respuesta automática
-           debe hacerlo blackholeFlow.
-        --------------------------------------------------- */
+          El listener solamente registra el mensaje.
+
+          El bloqueo real de la respuesta automática
+          lo hace blackholeFlow.
+        */
 
       } catch (error) {
-
         console.error(
           '❌ ERROR EN LISTENER GLOBAL:',
           error
         );
-
       }
-
     }
   );
 
@@ -869,6 +780,10 @@ const main = async () => {
 
   obtenerUploadsFolder();
 
+  /* =======================================================
+     INFORMACIÓN DE INICIO
+  ======================================================= */
+
   console.log('==========================================');
   console.log('✅ BOT EMCA LISTO');
   console.log(`🌐 API BOT: http://127.0.0.1:${PORT}`);
@@ -876,7 +791,6 @@ const main = async () => {
   console.log('📎 Registro de multimedia: ACTIVO');
   console.log('🛑 Pausa por asesor: ACTIVA');
   console.log('==========================================');
-
 };
 
 /* =========================================================
@@ -886,24 +800,20 @@ const main = async () => {
 process.on(
   'uncaughtException',
   (err) => {
-
     console.error(
       '⚠️ Excepción no capturada interceptada:',
       err.message
     );
-
   }
 );
 
 process.on(
   'unhandledRejection',
   (reason) => {
-
     console.error(
       '⚠️ Promesa rechazada no capturada:',
       reason
     );
-
   }
 );
 

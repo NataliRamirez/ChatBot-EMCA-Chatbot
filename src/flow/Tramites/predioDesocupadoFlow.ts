@@ -3,6 +3,7 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
 import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
 import { usuariosPausados } from '../../app.js'
 
+
 const mensajePredio = `Requisitos y documentos obligatorios:
 
 Dirección exacta del inmueble.
@@ -22,6 +23,17 @@ Dirección: Carrera 24 #39-54, Calarcá - Quindío
 Horario: Lunes a viernes de 7:30 a.m. a 5:30 p.m.
 
 Haz clic en el botón de abajo para regresar:`
+
+/**
+ * @file predioDesocupadoFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de suministrar información relacionada con
+ * trámites de predios, cambios de propietario y traspasos de vivienda.
+ * Permite orientar al usuario sobre los requisitos documentales, el
+ * procedimiento presencial y los canales de atención habilitados por EMCA.
+ */
+
+
 const botones = ['Menú principal']
 
 export const predioDesocupadoFlow = addKeyword(['💧 Predio', 'predio'])

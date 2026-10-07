@@ -3,8 +3,18 @@ import { guardarMensaje, obtenerTextoLimpio } from "../conexionApi.js";
 import { menuPrincipalFlow } from "../MenusPrincipales/menuPrincipalFlow.js";
 import { usuariosPausados } from '../../app.js';
 
-const mensajeServicioAgua = 'ESTADO Y REACTIVACIÓN DEL SERVICIO ¡Gracias por comunicarte con EMCA! Hemos registrado tu novedad. Si la interrupción del servicio se debe a saldos pendientes, puedes acercarte a nuestra sede comercial para efectuar el pago y solicitar el restablecimiento del agua. Soporte Comercial y Consultas: 302 409 1910 Presiona el botón para volver al menú de opciones:';
+
+const mensajeServicioAgua = '❌ *REPORTAR CORTE O FALTA DE SERVICIO DE AGUA*\n\nTu reporte ha sido ingresado en nuestro sistema. Estamos verificando los sectores afectados. Lo invitamos a sercase a nuestras oficinas para que pueda generar el pago del servicio y asi poder reactivar el servicio \n\nPresiona el botón para regresar al menú principal:';
 const botones = ['Menú principal']
+
+/**
+ * @file sinServicioAguaFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo conversacional encargado de atender reportes
+ * relacionados con la falta de servicio de agua o cortes en el suministro.
+ * El sistema informa al usuario sobre el procedimiento establecido por EMCA
+ * y permite regresar al menú principal del chatbot.
+ */
 
 
 export const sinServicioAguaFlow = addKeyword(['sin_servicio_agua_action', 'falta de agua', 'corte de agua'])

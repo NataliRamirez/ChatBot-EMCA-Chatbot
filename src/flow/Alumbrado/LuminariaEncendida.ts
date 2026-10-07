@@ -3,8 +3,18 @@ import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js';
 import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js';
 import { usuariosPausados } from '../../app.js';
 
-const mensajeLuminariaEncendida = 'LUMINARIA ENCENDIDA DE DÍA Hemos registrado tu reporte. Para ayudarnos a cuidar la energía y agilizar la inspección técnica del sector, te invitamos a enviar la dirección exacta o punto de referencia a nuestras líneas de atención: Líneas de Soporte Técnico: 302 409 1910';
+
+const mensajeLuminariaEncendida = '💡 *REPORTAR LUMINARIA ENCENDIDA DE DÍA*\n\nHemos registrado tu reporte de falla en el alumbrado público. Por eso lo invitamos a realizar el reporte al siguiente numero telefonico 3024091910 o el 3024091899 y nuestro equipo técnico procederá a verificar el sector.\n\nPresiona el botón para volver al menú principal:';
 const botonesLuminaria = ['Menú principal'];
+
+/**
+ * @file alumbradoFlow.ts
+ * @author Juan David Nieto
+ * @description Flujo encargado de gestionar las opciones relacionadas con
+ * reportes de alumbrado público, permitiendo al usuario seleccionar el tipo
+ * de novedad que desea reportar.
+ */
+
 
 export const LuminariaEncendidaFlow = addKeyword([
   'luminaria encendida', 
