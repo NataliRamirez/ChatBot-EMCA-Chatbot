@@ -30,19 +30,36 @@ import { usuariosPausados } from '../../app.js';
 // =========================================================
 
 const mensajeBienvenidaNuevo = `
-👋 ¡Hola! Bienvenido al sistema de atención virtual de *EMCA*.
+👋 *¡Hola! Qué gusto tenerte por aquí.* 💙
 
-Para brindarte una atención personalizada, necesitamos realizar un registro rápido por única vez.
+Soy el asistente virtual de *EMCA* y estoy aquí para ayudarte de forma rápida y sencilla.
 
-Por favor, escribe tu *Nombre completo*:
+Antes de comenzar, necesitamos registrar tus datos *por única vez* para poder brindarte una atención más personalizada.
+
+✨ Empecemos. ¿Cuál es tu *nombre completo*?
+
 `;
 
 const mensajePideCedula = `
-🆔 ¡Gracias! Ahora, ingresa tu número de *Cédula o Documento de Identidad* (sin puntos ni espacios):
+📧 *¡Perfecto, ya casi terminamos!* 🙌
+Para completar tu registro, necesitamos verificar tus datos.
+
+Por favor, ingresa tu número de *Cédula o Documento de Identidad*.
+
+👉 Escríbelo *sin puntos, espacios ni caracteres especiales*
+
+
 `;
 
 const mensajePideEmail = `
-📧 Excelente. Por último, ingresa tu *Correo Electrónico*:
+🆔 *¡Excelente! Último paso.* 🚀
+
+Ahora necesitamos un medio para poder contactarte y mantenerte informado sobre tus solicitudes.
+
+Por favor, ingresa tu *correo electrónico* 📩
+
+👉 Escríbelo *sin puntos, espacios ni caracteres especiales*.
+
 `;
 
 // =========================================================

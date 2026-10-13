@@ -1,7 +1,7 @@
 import { addKeyword } from '@builderbot/bot'
 import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
-import { masOpcionesFlow } from '../MenusPrincipales/masOpcionesFlow.js'
 import { usuariosPausados } from '../../app.js'
+import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
 
 
 
@@ -32,7 +32,7 @@ Presiona el botón para regresar al menú principal:`
  */
 
 
-const botones = ['Más opciones']
+const botones = ['Menú principal']
 
 export const tramitesFlow = addKeyword(['📝 Trámites y solicitudes', '📝 Trámites'])
 
@@ -49,7 +49,7 @@ export const tramitesFlow = addKeyword(['📝 Trámites y solicitudes', '📝 Tr
     mensajeTramites,
     {
       buttons: [
-        { body: 'Más opciones' }
+        { body: 'Menú principal' }
       ],
       capture: true
     },
@@ -69,7 +69,7 @@ export const tramitesFlow = addKeyword(['📝 Trámites y solicitudes', '📝 Tr
            
       
             if (opcion.includes('menu') || opcion.includes('princip')) {
-              return gotoFlow(masOpcionesFlow);
+              return gotoFlow(menuPrincipalFlow);
             }
       
             const msgError = '⚠️ Por favor, presiona el botón para regresar.';
