@@ -1,7 +1,7 @@
 import { addKeyword } from '@builderbot/bot'
 import { guardarMensaje, obtenerTextoLimpio } from '../conexionApi.js'
-import { masOpcionesFlow } from '../MenusPrincipales/masOpcionesFlow.js'
 import { usuariosPausados } from '../../app.js'
+import { menuPrincipalFlow } from '../MenusPrincipales/menuPrincipalFlow.js'
 
 
 /**
@@ -15,7 +15,7 @@ import { usuariosPausados } from '../../app.js'
 
 
 const mensajeDobleFact = `📄 *DOBLE FACTURACIÓN*\n\nSi te llegó un cobro duplicado en tu factura, por favor ten a la mano el número de cuenta contrato y acércate a nuestras oficinas ubicadas en 🕒 Lunes a Viernes: 7:30 a.m. - 5:30 p.m.\n📍 Dirección: Carrera 24 #39-54 o envía una solicitud formal con el número de predio a los siguientes numeros de telefono  3024091910 o el 3024091899.`
-const botonesRetorno = ['Más opciones']
+const botonesRetorno = ['Menú principal']
 
 export const dobleFacturacionFlow = addKeyword(['DOBLE_FACTURACION_FLOW', '📄 Doble facturación'])
   
@@ -33,7 +33,7 @@ export const dobleFacturacionFlow = addKeyword(['DOBLE_FACTURACION_FLOW', '📄 
     mensajeDobleFact,
     {
       buttons: [
-        { body: 'Más opciones' }
+        { body: 'Menú principal' }
       ],
       capture: true
     },
@@ -52,7 +52,7 @@ export const dobleFacturacionFlow = addKeyword(['DOBLE_FACTURACION_FLOW', '📄 
      
      
            if (opcion.includes('menu') || opcion.includes('princip')) {
-             return gotoFlow(masOpcionesFlow);
+             return gotoFlow(menuPrincipalFlow);
            }
      
            const msgError = '⚠️ Por favor, presiona el botón para regresar.';

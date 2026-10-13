@@ -20,8 +20,8 @@ export const flowGracias = addKeyword([
 ])
 .addAnswer(
 [
-    `✅ Atención personalizada finalizada.,`,
-    ` EMCA agradece tu contacto.
+    `✅ Atención personalizada finalizada.,
+     EMCA agradece tu contacto.
     Escribe *HOLA* cuando necesites ayuda nuevamente.`,
 ],
 
